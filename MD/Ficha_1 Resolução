@@ -1,0 +1,194 @@
+1. Considere as seguintes descrições do funcionamento de sistemas e/ou organizações. Indique quais são os
+atores e sugira um nome para o caso de uso:
+a) “Quando o funcionário chega ao trabalho, deve registar a sua entrada” (no DCU do sistema de
+informação de um hotel)
+
+R.: 
+    Atores:
+        Funcionário do hotel(usa o sistema para registar a entrada).
+        Eventualmente pode existir uma base de dados externa que forneça e receba informação, mas não seja controlada pelo sistema, que seja considerada um ator secundário.
+    Nome do caso de uso:
+        Regista Entrada.
+
+b) “Quando é recebido um pedido de um cliente, deve verificar-se imediatamente a disponibilidade, em
+armazém, da mercadoria encomendada” (no DCU de uma empresa).
+
+R.: 
+    Atores: 
+        Cliente(usa a empresa para obter uma indormação: estamos a modelar a empresa como um todo).
+        O funcionário nao e ator, é parte do sitema.
+    Nome do caso de uso:
+        Faz um pedido -> o nome do caso de uso reflete o ponto de vista de quem vai usar o sistema.
+
+c) “Quando a aula termina, o professor deve registar, no sistema de informação da escola, o número de
+alunos que compareceram à aula” (no DCU do sistema de informação da escola).
+
+R.:
+    Atores:
+        Professor da escola (usa o sistema de informação para guardar a informação)
+    Nome do caso de uso: 
+        Regista o número de alunos.
+Se o caso de uso for mais genérico e incluir tambémm as ações a consultar( além de registar) as preseças do aluno, então o aluno ( e o Diretor do Curso) também podem ser
+atores - mas sendo que nem todos os atores podem fazer tudo é razoavel indicar em dois casos de uso separados.
+
+d) “É necessário verificar todos os problemas reportados pelos clientes. O funcionário, de serviço,
+aquando da receção dessa informação, deve proceder de forma adequada” (no DCU de uma empresa).
+
+R.:
+    Atores: 
+        Cliente (usa a empresa para reportar um problema - e eventualmente vê-lo resolvido)
+        O funcionário não é ator pois faz parte do próprio sistema ( a empresa ).
+    Nome do caso de uso:
+        Relata problema.
+
+e) “Quando ocorre uma greve, cada instituição pública deve enviar, até às 12h30 do mesmo dia, para o
+Ministério que a tutela, o número de adesões à greve” (no DCU de uma instituição pública).
+
+R.:
+    Atores: 
+        A greve é o evento que despoleta o caso de uso; no entanto não "obtém um benefício".
+        A instituição pública, apesar de receber indiretamente um beneficio, não é externa ao sistema.
+        Ministério que tutela a instituição pública ( não é quem inicia a ação, mas obtém um beneficio - a informação).
+        A administração pública também é um ator, mas "fora de cena" uma vez que os seus objetivos tambem sao atingidos.
+        Como nao é primário nem secundário, não se apresenta na DCU.
+    Nome do Caso de uso:
+        Recebe informação da adesão à greve.
+
+f) “Quando ocorre uma greve, cada instituição pública deve enviar, até às 12h30 do mesmo dia, para o
+Ministério que a tutela, o número de adesões à greve” (no DCU do Ministério).
+
+
+R.:
+    Atores:
+        Instituição pública (inicia a ação e vê os seus objetivos alcançados).
+        A greve é o evento que despoleta o caso de uso; no entanto não "obtém um beneficio".
+        O ministério público nao é ator: é o próprio sistema que se está a modelar.
+        A administração pública é um ator "fora de cena".
+    Nome do caso de uso:
+        Envia informação sobre a adesão à greve.
+
+2. Qual das seguintes afirmações sobre atores num diagrama de caso de uso são verdadeiras
+a) Estão sempre localizados dentro do sistema a ser descrito
+  R.: F
+b) Comunicam com o caso de uso e com outros atores
+  R.: F
+c) Relacionam-se com casos de uso através de associações
+  R.: V
+d) Interagem com o sistema a ser descrito
+  R.: V
+e) Podem usar o sistema a ser descrito
+  R.: V
+f) Podem ser usados pelo sistema a ser descrito
+  R.: V
+g) Cada ator corresponde a um (ou vários) utilizadores do sistema a ser descrito, que tenham determinada
+categoria profissional
+  R.: F
+h) Representam papéis desempenhados pelos utilizadores do sistema a ser descrito
+  R.: V
+
+
+3. Qual ou quais das seguintes questões são úteis para identificar os atores envolvidos num diagrama de casos
+de uso:
+a) Quem necessita do suporte do sistema para desempenhar as suas funções?
+  R.: V
+b) Quem dá suporte ao sistema para que ele possa desempenhar as suas funções?
+  R.: V
+c) Que o hardware que deve ser disponibilizado para os utilizadores do sistema?
+  R.: F
+
+4. Quando está a desenhar um diagrama de casos de uso para uma loja de livros online quais das seguintes
+situações devem ser consideradas casos de uso: Porquê?
+a) Pesquisar um livro
+  R.: Sim
+b) Encomendar um livro
+  R.: Sim
+c) Cancelar uma encomenda
+  R.: Sim
+d) Não encomendar um livro
+  R.: Não
+e) Introduzir o título do livro
+  R.: Não
+f) Fazer login
+  R.: Não
+g) Introduzir os detalhes do cartão de crédito
+  R.: Não
+
+
+5. Qual ou quais das seguintes afirmações são verdadeiras:
+a) Um diagrama de caso de uso contém atores e casos de uso
+  R.: V
+b) Um diagrama de caso de uso modela a evolução temporal de um sistema
+  R.: F
+c) Um diagrama de caso de uso especifica quais as tarefas que poderão ser realizadas através do uso do
+sistema, e por quais intervenientes, quando o sistema a ser desenvolvido estiver a funcionar
+  R.: V
+d) Um diagrama de caso de uso especifica a decomposição das principais funções do sistema em
+subfunções mais simples.
+  R.: F
+
+6. Indique os casos de uso e respetivos atores correspondentes ao sistema de inscrição descrito abaixo.
+	
+	Um aluno pode-se inscrever em disciplinas opcionais durante um período de inscrição especificado. Para se
+	inscrever, o aluno deve consultar seu orientador.
+	
+	O orientador pode, ou não, aprovar cada disciplina opcional que o aluno selecionou. O orientador usará o
+	sistema de inscrição para determinar se o aluno cumpre os pré-requisitos da disciplina, tem boas
+	classificações académicas e é elegível para se inscrever.
+	
+	R.:
+	Atores : Académico (generalização de Professores e Orientadores)
+	Nome do Caso de Uso : Consulta dados alunos
+	
+	Se o orientador aprovar a inscrição do aluno em uma ou mais disciplinas opcionais, o orientador inscreve o
+	aluno na disciplina, começando por inserir a identificação do departamento do aluno no sistema de inscrição.
+	De seguida, para cada disciplina, insere o número de identificação. A descrição da disciplina, calendário, 
+	horários e turmas disponíveis para essa disciplina serão exibidos automaticamente. O sistema verificará se
+	há conflitos de vagas e/ou horário antes de confirmar a inscrição.
+	
+	Uma vez concluída a inscrição com sucesso uma fatura com quantia a pagar, relativa às disciplinas, será
+	impressa na tesouraria. O aluno deve, de seguida, ir pagá-la. Quando o funcionário da tesouraria recebe o
+	pagamento por parte do aluno regista-o no sistema de inscrição.
+	
+	R.:
+	Atores : Orientador (ator principal - subator de Académico)
+	              Tesouraria (ator secundário)
+	Nome do Caso de Uso : Inscreve aluno (inclui Consulta dados aluno)
+	
+	Atores : Tesouraria
+	Nome do Caso de Uso : Regista pagamento inscrição
+	
+	Os professores podem usar o sistema de inscrição para verificar as inscrições nas suas aulas, obter uma lista
+	de aulas a lecionar, verificar o cadastro de um aluno, procurar o endereço de mail de um aluno entre outras
+	informações.
+	
+	R.:
+	Atores : Professor (subator de Académico)
+	Nome do Caso de Uso : Consulta dados aulas
+	
+	O funcionário administrativo pode usar o sistema de inscrição para inserir novas turmas em disciplinas que
+	irão decorrer futuramente, cancelar turmas, e verificar conflitos na atribuição de sala de aula / corpo docente.
+	
+	R.: 
+	Atores : Funcionário Administrativo
+	Nome do Caso de Uso : Gere turmas
+	
+	Os serviços de admissão usam o sistema de inscrição para adicionar novos alunos.
+	
+	R.:
+	Atores : Admissões
+	Nome do Caso de Uso :  Adiciona aluno
+	
+	Os serviços académicos usam o sistema de inscrição para atualizar as informações dos alunos e verificar o
+	cumprimento dos requisitos de fim de curso para os alunos que planeiam formar-se.
+	
+	R.: 
+	Atores : Serviços Académicos
+	Nome do Caso de Uso : Edita dados aluno
+	
+	Atores : Serviços Académicos
+	Nome do Caso de Uso : Verifica requisitos de fim de curso
+	
+	R.: 
+	Atores : Orientador, tesouraria, professores, funcionário administrativo, serviços de demissão, serviços académicos.
+
+        
