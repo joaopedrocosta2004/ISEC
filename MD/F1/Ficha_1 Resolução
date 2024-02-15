@@ -191,4 +191,13 @@ subfunções mais simples.
 	R.: 
 	Atores : Orientador, tesouraria, professores, funcionário administrativo, serviços de demissão, serviços académicos.
 
-        
+7. 
+	Patrão -> Negoceia Preço (associação direta)
+	Cliente -> Efetua Pagamento (associação direta)
+	                 Paga a pronto (associação herdada)
+		       Paga com crédito (associação herdada)
+	Cliente Importante -> Negoceia Preço (associação direta)
+	                                    Efetua Pagamento (associação herdada)
+		                           Paga a Pronto (associação herdada)
+                 Paga com crédito (associação herdada)
+8.
