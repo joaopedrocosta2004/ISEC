@@ -1,0 +1,151 @@
+--Exercício 2
+CREATE OR REPLACE PROCEDURE f03_ex2(gen VARCHAR, percentagem NUMBER, total NUMBER)
+IS
+  CURSOR c1 IS 
+    SELECT codigo_livro, preco_tabela FROM livros 
+    WHERE UPPER(genero) = gen
+    ORDER BY preco_tabela ASC;
+
+  pre_total NUMBER;
+BEGIN
+  FOR r IN c1
+  LOOP
+    SELECT SUM(preco_tabela) INTO pre_total FROM livros 
+    WHERE UPPER(genero) = gen;
+    IF pre_total < total THEN
+      UPDATE livros SET preco_tabela = preco_tabela * percentagem
+      WHERE codigo_livro = r.codigo_livro;
+    ELSE
+      EXIT;
+    END IF;
+  END LOOP;
+END;
+/
+
+CALL f03_ex2('AVENTURA', 0.1, 160);
+
+--Exercício 3
+CREATE TABLE ERROS (
+  cod_error NUMBER(10),
+  message VARCHAR2(250),
+  data_erro DATE
+);
+
+--Exercício 4
+CREATE OR REPLACE PROCEDURE f03_ex4(codl NUMBER)
+IS
+  coda NUMBER;
+ 
+BEGIN
+  SELECT codigo_autor INTO coda FROM livros
+  WHERE codigo_livro = codl;
+ 
+  IF coda = 17 THEN
+    INSERT INTO autores VALUES (80, 'Luis Moreno Campos', 23432432, 'Lisboa', NULL, 'M', 'Portuguesa','Informatica');
+    UPDATE livros SET codigo_autor = 80
+    WHERE codigo_livro = codl;
+  END IF;
+END;
+/
+CALL f03_ex4(1000);
+
+--Exercício 5
+CREATE OR REPLACE PROCEDURE f03_ex5(codl NUMBER)
+IS
+  coda NUMBER;
+  code NUMBER;
+  msg erros.message%TYPE;
+  
+BEGIN
+  SELECT codigo_autor INTO coda FROM livros
+  WHERE codigo_livro = codl;
+  
+  IF coda = 17 THEN
+    INSERT INTO autores VALUES (80, 'Luis Moreno Campos', 23432432, 'Lisboa', NULL, 'M', 'Portuguesa','Informatica'); 
+    UPDATE livros SET codigo_autor = 80
+    WHERE codigo_livro = codl;
+  END IF;
+  
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+ -- INSERT INTO erros VALUES (SQLCODE, SQLERRM, SYSDATE); -- not possible
+ code := SQLCODE;
+ msg := SQLERRM;
+ INSERT INTO erros VALUES (code, msg, SYSDATE);
+END;
+/
+CALL f03_ex5(1000);
+SELECT * FROM erros;
+
+-- Exercicio 6
+CREATE OR REPLACE PROCEDURE F03_EX06 (VALOR NUMBER)
+IS
+  CURSOR C1 IS
+    SELECT PRECO_TABELA, TITULO, QUANT_EM_STOCK FROM LIVROS WHERE QUANT_EM_STOCK > VALOR;
+BEGIN
+  FOR R IN C1
+  LOOP
+    INSERT INTO TEMP VALUES (R.PRECO_TABELA, R.QUANT_EM_STOCK, R.TITULO);
+  END LOOP;
+END;
+/
+CALL F03_EX06(&VALOR_EM_FALTA);
+
+-- Exercicio 7
+CREATE OR REPLACE FUNCTION F03_EX07 (CODL NUMBER)
+RETURN  NUMBER
+IS
+  PRECOL NUMBER;
+BEGIN
+  SELECT PRECO_TABELA INTO PRECOL FROM LIVROS WHERE CODIGO_LIVRO = CODL; 
+  RETURN PRECOL;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    RAISE_APPLICATION_ERROR(-20301, 'CÓDIGO DE LIVRO INEXISTENTE');
+END;
+/
+SELECT F03_EX07(10) FROM DUAL;
+
+-- Exercicio 8
+CREATE OR REPLACE FUNCTION F03_EX08 (CODA NUMBER)
+  RETURN VARCHAR
+  IS
+    NOME_AUTOR AUTORES.NOME%TYPE;
+BEGIN
+  SELECT SUBSTR(NOME, 1, INSTR(NOME, ' ') -1) INTO NOME_AUTOR FROM AUTORES WHERE CODIGO_AUTOR = CODA;
+  RETURN NOME_AUTOR;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    RAISE_APPLICATION_ERROR(-20302, 'CODIGO DE AUTOR INEXISTENTE');
+END;
+/
+SELECT F03_EX08(2) FROM DUAL;
+
+-- Exercicio 9
+CREATE OR REPLACE FUNCTION F03_EX09 (CODA NUMBER)
+  RETURN NUMBER
+  IS
+    NLIVROS NUMBER;
+BEGIN
+  SELECT COUNT(CODIGO_LIVRO) INTO NLIVROS FROM LIVROS WHERE  CODIGO_AUTOR = CODA;
+  RETURN NLIVROS;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    RAISE_APPLICATION_ERROR(-20304, 'O autor com o código ' || CODA || ' não escreveu livros');
+END;
+/
+SELECT F03_EX09(2) FROM DUAL;
+
+--Exercicio 10
+CREATE OR REPLACE PROCEDURE F03_EX10 (CODA1 NUMBER, CODA2 NUMBER)
+  IS
+  
+BEGIN
+  FOR I IN CODA1..CODA2
+  LOOP
+    INSERT INTO TEMP VALUES (I, F03_EX09(I), F03_EX08(I));
+  END LOOP;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+     RAISE_APPLICATION_ERROR(-20304, 'AUTOR NAO ENCONTRADO');
+END;
