@@ -200,4 +200,11 @@ subfunções mais simples.
 	                                    Efetua Pagamento (associação herdada)
 		                           Paga a Pronto (associação herdada)
                  Paga com crédito (associação herdada)
-8.
+8. Identifique as atividades e o ator do diagrama de casos de uso representado na Figura 2, de acordo com a
+seguinte descrição:
+
+R.: 	A -> Cliente
+	B -> Faz Encomenda
+	c -> Escolhe Brinde
+	D -> Faz encomenda de valor elevado
+	E -> Faz seguro de transporte
