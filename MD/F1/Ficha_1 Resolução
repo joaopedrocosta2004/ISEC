@@ -200,4 +200,42 @@ subfunções mais simples.
 	                                    Efetua Pagamento (associação herdada)
 		                           Paga a Pronto (associação herdada)
                  Paga com crédito (associação herdada)
-8.
+8. Identifique as atividades e o ator do diagrama de casos de uso representado na Figura 2, de acordo com a
+seguinte descrição:
+
+R.: 	A -> Cliente
+	B -> Faz Encomenda
+	c -> Escolhe Brinde
+	D -> Faz encomenda de valor elevado
+	E -> Faz seguro de transporte
+
+9. Identifique as atividades e os atores do diagrama de casos de uso representado na Figura 3, de acordo com
+a descrição seguinte:
+
+R.:
+	A -> Cliente
+	B -> Compra SW Musical
+	C -> Compra componentes do sw musical
+	D -> Compra MusEdit
+	E -> Fornece (vende) componentes
+	F -> Empresa (exterior) de componentes
+
+10. Considere o diagrama da Figura 4. O diagrama representa uma aplicação on-line que disponibiliza serviços
+bancários. A aplicação foi construída de acordo com a seguinte descrição: “Um cliente pode usar o sistema
+para realizar pagamentos ou obter extratos detalhados. Para realizar estas tarefas deve validar-se
+(autenticar-se) no sistema. O extrato obtido corresponde às operações realizadas nas últimas 24 horas.
+Contudo, o cliente também pode definir o número de dias do extrato. O pagamento de operações pode ser
+feito com cartão ou por transferência bancária. O pagamento por cartão implica a validação dessa transação
+por uma entidade externa ao banco (a entidade emissora do cartão). Em cada uma das situações não poderá
+exceder o limite de crédito ou o valor disponível na conta”.
+
+	a) Identifique as atividades e os atores no diagrama.
+	R.:
+		A1 -> Cliente
+		A2 -> Entidade emissora do cartão
+		U1 -> Obtém extrato
+		U2 -> Define datas do extrato
+		U3 -> Autentica-se
+		U4 -> Faz pagamento
+		U5 -> Faz pagamento por cartão
+		U6 -> Faz pagamento por transferência bancária
