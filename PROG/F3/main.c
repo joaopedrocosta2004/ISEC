@@ -38,15 +38,18 @@ void conta(int *t, int tam, int *np, int *ni, int *maior, int *pos){
 // Deve colocar nas variáveis referenciadas pelos 2 ponteiros o maior e segundo maior elementos existentes na tabela
 void procuraDupla(int *tab, int tam, int *prim, int *seg){
     if (tam < 2) {
-        for (int i = 0; i < tam; i++) {
-            if (*(tab + i) > *prim || i == 0) {
-                *prim = *(tab + i);
-            }
-            if (*(tab + i) > *seg && *(tab + i) < *prim || i == 0) {
-                *seg = *(tab + i);
-            }
+        printf("\n O vetor precisa ter, pelo menos, dois elementos.\n");
+        return;
+    }
+    for (int i = 0; i < tam; i++) {
+        if (*(tab + i) > *prim || i == 0) {
+             *prim = *(tab + i);
+        }
+        if (*(tab + i) > *seg && *(tab + i) < *prim || i == 0) {
+            *seg = *(tab + i);
         }
     }
+    
 }
 
 // Exercicio 6
