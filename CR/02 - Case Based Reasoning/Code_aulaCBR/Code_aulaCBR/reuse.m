@@ -10,8 +10,8 @@ function [new_price] = reuse(retrieved_cases, new_case)
     X = [ones(size(x1)) x1 x2];
     
     b = X\y;
-    
-    % new_price = ...
+
+    new_price = b(1) + b(2) * new_case.number_persons + b(3) * new_case.duration;    
         
     fprintf(['Based on the attributes Number of Persons and Duration of the retrieved cases,\n', ...
                 'the estimated price for the new case is %.2f, instead of %.2f.'], new_price, new_case.price);

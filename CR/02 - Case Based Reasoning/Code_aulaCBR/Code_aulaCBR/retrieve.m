@@ -26,36 +26,70 @@ function [retrieved_indexes, similarities, new_case] = retrieve(case_library, ne
     for i=1:size(case_library,1)
         
         distances = zeros(1,8);
-        
-        distances(1,1) = calculate_local_distance(holiday_type_sim, ...
-                                case_library{i,'HolidayType'}, new_case.holiday_type);
-                            
-        distances(1,2) = calculate_euclidean_distance(case_library{i,'Price'} / max_values('Price'), ... 
-                                new_case.price / max_values('Price'));
-        
-        distances(1,3) = calculate_linear_distance( ...
-                                case_library{i,'NumberOfPersons'} / max_values('NumberOfPersons'), ...
-                                new_case.number_persons / max_values('NumberOfPersons'));
-                            
-        cur_case_latlon = regions_positions(char(case_library{i,'Region'}));
 
-        distances(1,4) = calculate_haversine_distance(cur_case_latlon, new_case_latlon);
-        
-        if distances(1,4) == -1
-           distances(1,4) = 1; 
+        if isfield(new_case, 'holiday_type')
+            distances(1,1) = calculate_local_distance(holiday_type_sim, ...
+                                case_library{i,'HolidayType'}, new_case.holiday_type);
+        else
+            weighting_factors(1) = 0;
         end
         
-        distances(1,5) = calculate_local_distance(transportation_sim, ...
+        if isfield(new_case, 'price')
+            distances(1,2) = calculate_euclidean_distance(case_library{i,'Price'} / max_values('Price'), ... 
+                                new_case.price / max_values('Price'));
+        else
+            weighting_factors(2) = 0;
+        end
+        
+        if isfield(new_case, 'number_persons')
+            distances(1,3) = calculate_linear_distance( ...
+                                case_library{i,'NumberOfPersons'} / max_values('NumberOfPersons'), ...
+                                new_case.number_persons / max_values('NumberOfPersons'));
+        else
+            weighting_factors(3) = 0;
+        end
+        
+        if isfield(new_case, 'region')
+            cur_case_latlon = regions_positions(char(case_library{i,'Region'}));
+            distances(1,4) = calculate_haversine_distance(cur_case_latlon, new_case_latlon);
+            if distances(1,4) == -1
+                distances(1,4) = 1; 
+            end
+        else
+            weighting_factors(4) = 0;
+        end
+        
+
+        if isfield(new_case, 'transportation')
+            distances(1,5) = calculate_local_distance(transportation_sim, ...
                                 case_library{i,'Transportation'}, new_case.transportation);
+        else
+            weighting_factors(5) = 0;
+        end
         
-        distances(1,6) = calculate_euclidean_distance(case_library{i,'Duration'} / max_values('Duration'), ... 
+        
+        if isfield(new_case, 'duration')
+            distances(1,6) = calculate_euclidean_distance(case_library{i,'Duration'} / max_values('Duration'), ... 
                                 new_case.duration / max_values('Duration'));
-                            
-        distances(1,7) = calculate_months_distance(case_library{i,'Season'}, new_case.season) / 6;
+        else
+            weighting_factors(6) = 0;
+        end
         
-        distances(1,8) = calculate_local_distance(accommodation_sim, ...
-                                case_library{i,'Accommodation'}, new_case.accommodation);
+        
+        if isfield(new_case, 'season')
+            distances(1,7) = calculate_months_distance(case_library{i,'Season'}, new_case.season) / 6;
+        else
+            weighting_factors(7) = 0;
+        end
                             
+        
+        if isfield(new_case, 'accommodation')
+            distances(1,8) = calculate_local_distance(accommodation_sim, ...
+                                case_library{i,'Accommodation'}, new_case.accommodation);
+        else
+            weighting_factors(8) = 0;
+        end
+              
         final_similarity = 1.0 - sum(weighting_factors.*distances')/sum(weighting_factors);
         
         if final_similarity >= threshold
