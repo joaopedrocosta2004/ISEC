@@ -1,6 +1,13 @@
 function [retrieved_indexes, similarities, new_case] = retrieve(case_library, new_case, threshold)
     
-    weighting_factors = [0.6 1.0 0.8 0.9 0.6 0.7 1.0 0.9];
+    weighting_factors = [0.1 
+                         0.2 
+                         0.1 
+                         0.1 
+                         0.1 
+                         0.1 
+                         0.2 
+                         0.1];
 
     holiday_type_sim = get_holiday_type_similarities();
     transportation_sim = get_transportation_similarities();
@@ -49,7 +56,7 @@ function [retrieved_indexes, similarities, new_case] = retrieve(case_library, ne
         distances(1,8) = calculate_local_distance(accommodation_sim, ...
                                 case_library{i,'Accommodation'}, new_case.accommodation);
                             
-        final_similarity = 1.0 - sum(weighting_factors.*distances')/sum(weighting_factors); 
+        final_similarity = 1.0 - sum(weighting_factors.*distances')/sum(weighting_factors);
         
         if final_similarity >= threshold
             retrieved_indexes = [retrieved_indexes i];
@@ -66,14 +73,14 @@ function [holiday_type_sim] = get_holiday_type_similarities()
 
     holiday_type_sim.similarities = [
         % Active Bathing City Education Language Recreation Skiing Wandering
-           1.0    0.5    0.8     0.3      0.0      0.6       0.1     0.3     % Active
-           0.2    1.0    0.7     0.7      0.5      0.4       0.3     0.0     % Bathing
-           0.9    0.9    1.0     0.5      0.1      0.7       0.7     0.7     % City
-           0.2    0.4    0.4     1.0      0.8      0.8       0.5     0.9     % Education
-           0.0    0.1    0.5     0.3      1.0      0.1       0.3     0.8     % Language
-           0.5    0.6    0.7     0.2      0.9      1.0       0.2     0.4     % Recreation
-           0.7    0.8    0.8     0.1      0.3      0.6       1.0     0.2     % Skiing
-           0.4    0.3    0.9     0.0      0.0      0.2       0.9     1.0     % Wandering
+        1.0     0.2     0.1     0.5     0.9     0.2     0.6     0.4                                                                     % Active
+        0.3     1.0     0.3     0.5     0.7     0.4     0.1     0.8                                                                   % Bathing
+        0.2     0.6     1.0     0.3     0.6     0.1     0.2     0.6                                                                       % City
+        0.8     0.3     0.5     1.0     0.4     0.5     0.7     0.1                                                                          % Education
+        0.4     0.9     0.5     0.3     1.0     0.4     0.2     0.6                                                                       % Language
+        0.7     0.6     0.3     0.1     0.9     1.0     0.8     0.4                                                                        % Recreation
+        0.9     0.8     0.7     0.5     0.4     0.2     1.0     0.1                                                                       % Skiing
+        0.2     0.7     0.9     0.8     0.5     0.3     0.1     1.0                                                                       % Wandering
     ];
 end
 
@@ -96,12 +103,12 @@ function [accommodation_sim] = get_accommodation_similarities()
     
     accommodation_sim.similarities = [
         % FiveStars FourStars HolidayFlat OneStar ThreeStars TwoStars 
-            1.0        0.5       0.2        0.7       0.9       0.4   % FiveStars
-            0.5        1.0       0.7        0.6       0.4       0.8   % FourStars
-            0.2        0.7       1.0        0.6       0.5       0.7   % HolidayFlat
-            0.7        0.6       0.6        1.0       0.5       0.6   % OneStar
-            0.9        0.4       0.5        0.0       1.0       0.8   % ThreeStars
-            0.4        0.9       0.7        0.0       0.8       1.0   % TwoStars
+    1.0     0.5     0.6     0.7     0.9     0.1                                                                 % FiveStars
+    0.5     1.0     0.8     0.5     0.3     0.2                                                                 % FourStars
+    0.6     0.8     1.0     0.4     0.5     0.9                                                                  % HolidayFlat
+    0.7     0.5     0.4     1.0     0.1     0.2                                                                  % OneStar
+    0.9     0.3     0.5     0.1     1.0     0.7                                                             % ThreeStars
+    0.1     0.2     0.9     0.2     0.7     1.0                                                   % TwoStars
     ];
 end
 
@@ -117,9 +124,7 @@ function [res] = calculate_local_distance(sim, val1, val2)
     i1 = find(sim.categories == val1);
     i2 = find(sim.categories == val2);
     res = 1.0 - sim.similarities(i1,i2);
-
 end
-
 
 function [res] = calculate_months_distance(val1, val2)
 
@@ -134,12 +139,12 @@ end
 
 function [res] = calculate_linear_distance(val1, val2)
 
-    res = sum(abs(val2 - val1))/length(val1);
+    res = sum(abs(val1 - val2))/length(val1); %length(val1) - normalização para ficarmos com valores entre zero e um
 end
 
 function [res] = calculate_euclidean_distance(val1, val2)
 
-    res = sqrt(sum((val2 - val1).^2))/length(val1);
+    res = sqrt(sum((val1 - val2).^2))/length(val1);
 end
 
 function [res] = calculate_haversine_distance(latlon1, latlon2)
@@ -173,6 +178,5 @@ function [res] = calculate_haversine_distance(latlon1, latlon2)
     distance = radius * c;
     
     % Earth circumference is used as known maximum to normalize the distance
-    earth_circumference = 40075.017; % in kilometers
-    res = distance / earth_circumference;
+    res = distance/40075;
 end
