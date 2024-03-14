@@ -1,0 +1,40 @@
+[System]
+Name='gorjeta - fuzzyLogicDesigner'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Serviço'
+Range=[0 10]
+NumMFs=3
+MF1='Fraco':'gaussmf',[1.5 0]
+MF2='Bom':'gaussmf',[1.5 5]
+MF3='Excelente':'gaussmf',[1.5 10]
+
+[Input2]
+Name='Comida'
+Range=[0 10]
+NumMFs=2
+MF1='Má':'trapmf',[0 0 1 3]
+MF2='Deliciosa':'trapmf',[7 9 11 19]
+
+[Output1]
+Name='Gorjeta'
+Range=[0 30]
+NumMFs=3
+MF1='Fraca':'trimf',[0 5 10]
+MF2='Média':'trimf',[10 15 20]
+MF3='Generosa':'trimf',[20 25 30]
+
+[Rules]
+1 1, 1 (1) : 2
+2 0, 2 (1) : 1
+3 2, 3 (1) : 2
