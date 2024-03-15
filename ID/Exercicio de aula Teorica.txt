@@ -1,0 +1,96 @@
+Exercicio 1
+1 - \b[aeiouAEIOU][a-zA-zçáé-]*[aeiouAEIOU]\b
+
+2 - \b[a-zA-Z0-9]{10}\b
+
+3 - /b [Aa][a-zA-Z]*[aA]
+
+4 - \b[0-9]{3}[aeiouAEIOU]{3}\b
+
+5 - (011)+
+
+Exercicio 2
+
+A - V | B - V | C - F | D - F | E - V | F - F | G - F 
+
+A - F | B - F | C - V | D - V | E - F | F - V | G - F
+
+A - V | B - V | C - V | D - V  | E - F | F - V | G - V
+
+Exercicio 4
+
+- Objeto {}
+- Array []
+
+{
+	"compras" : {
+		"@data" : "2024-03-20",
+		"compra" : [
+			{
+				"@id" : "c01"
+				"item" : "Agrafador",
+				"quant" : 2
+			},
+			{
+				"@id" : "c02"
+				"item" : "Calculadora",
+				"quant" : 1
+			}]
+	}
+}
+
+Exercicio 5
+
+A - Nomes (texto) dos concorrentes e jurados de Coimbra
+
+//concorrente[cidade="Coimbra"]/nome/text() || //jurado[local="Coimbra"]/nome/text()
+
+B - Nomes(texto) dos concorrentes que moram em Lisboa e > 30 anos
+
+//concorrente[moram="Lisboa" and idade > 30]/nome/text()
+C - Localidades (elem. cidade) dos concorrentes > 50 anos
+
+//concorrente [idade > 50]/cidade
+
+D - Idade do concorrente + velho
+
+//Concorrente [idade =max(//idade)]/idade
+
+E - Nomes dos concorrentes aprovados a mais do que uma categoria 
+
+//concorrente[count(categorias/cat[@resultado = "Aprovado"]) > 1]/nome
+
+F - Quantos concorrentes foram aprovados a pelo menos duas categorias
+
+count (//concorrente[count(categorias/cat[@resultado = "Aprovado"]) > 1]/nome)
+
+G - Id do concorrente com a classificação mais alta à categoria (cat) 'teatro'
+
+//Concorrente[categorias/cat[@tipo='teatro']/@nota = max(//cat[@tipo='teatro']/@nota)]/@id
+
+
+Exercicio 6
+
+Pertence à pergunta - /concurso/descendant::concorrente[last()]/preceding-sibling::concorrente[position()<3]//cat[@tipo='dance']//ancestor::*/nome
+
+R.: 	<nome>Joana Martins</nome>
+	<nome>Carla Fontes</nome>
+	
+
+Exercicio 7
+
+<!ELEMENT concorrente
+	(nome, idade, cidade, categoria)>
+
+<!ELEMENT nome (#PCDATA)>
+
+<!ELEMENT categoria (cat+)>
+
+<!ELEMENT cat (EMPTY)>
+
+<!ATTLIST cat resultado (aprovado | reprovado) " REQUIRED>
+
+<!ATTLIST cat tipo (CDATA) #REQUIRED>
+
+
+

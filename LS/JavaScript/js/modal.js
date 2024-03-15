@@ -16,7 +16,6 @@ modalCloseButtons.forEach((x) =>
     if (x.dataset.modalid == "gameOver") reset();
   })
 );
-
 btTop.addEventListener("click", () => modalTop10.showModal());
 document.body.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && modalGameOver.open) reset();

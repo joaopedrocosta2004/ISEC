@@ -1,5 +1,5 @@
 /**********************************************
-*** CSS - Ficha Javascript
+*** CSS - Ficha Javascrip
 **********************************************/
 :root {
   --globalColor: #cf4444;
@@ -10,12 +10,12 @@
 }
 * {
   margin: 0;
-  padding:0px;
+  padding: 0px;
   box-sizing: border-box;
 }
 body {
   background: linear-gradient(#555, rgba(0, 0, 0, 0.1)) fixed;
-  font-family: Verdana,sans-serif;
+  font-family: Verdana, sans-serif;
 }
 select,
 label,
@@ -23,7 +23,7 @@ dd,
 button {
   padding: 5px;
   border-radius: 5px;
-  outline:none;
+  outline: none;
 }
 select,
 button {
@@ -49,14 +49,13 @@ button {
   letter-spacing: 2px;
   line-height: 1.75em;
   color: var(--globalColor);
-
 }
 .title {
   text-transform: uppercase;
 }
 .subtitle {
   font-style: italic;
-  font-weight:normal;
+  font-weight: normal;
 }
 .main-content {
   display: flex;
@@ -67,7 +66,7 @@ button {
 }
 #container {
   margin: 20px 0 10px 0;
-  position:relative;
+  position: relative;
   margin: 20px auto;
   display: flex;
   height: 100%;
@@ -110,14 +109,30 @@ button {
   grid-gap: 5px;
   width: 100%;
 }
+#panel-control
+  .form-metadata:has(#message.hide + :not(.list-item.gameStarted)) {
+  grid-template-columns: auto;
+}
+
+#panel-control
+  .form-metadata
+  #message:not(.hide):has(+ .list-item.gameStarted) {
+  display: none;
+}
+
 #panel-control .list-item.gameStarted {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 2px;
 }
+
 #panel-control .list-item:not(.gameStarted) {
   display: none;
+}
+#message,
+#panel-control button {
+  user-select: none;
 }
 #message.hide {
   display: none;
@@ -143,6 +158,7 @@ button {
 #panel-control #message {
   color: var(--messageColor);
   font-weight: bolder;
+  width: 100%;
 }
 #game {
   width: 80%;
@@ -217,7 +233,7 @@ Estilos para cartas
   box-shadow: var(--boxshadow0);
 }
 
-.card.inative {
+.card.inactive {
   box-shadow: var(--boxshadow0);
   pointer-events: none;
 }
@@ -283,21 +299,22 @@ footer {
   text-align: center;
 }
 /*--------------------------------------------------
-Janelas Modais
+Estilos para as Janelas Modais
 --------------------------------------------------*/
 dialog {
   border-radius: 10px;
-  max-width: 350px; 
+  max-width: 350px;
   width: 100%;
-  margin:100px auto 0px auto;text-align: center;
-  outline:none;
+  margin: 100px auto 0px auto;
+  text-align: center;
+  outline: none;
   box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.3);
-  background-color:var(--top10Color);
+  background-color: var(--top10Color);
   border: 3px solid var(--top10Color);
-  color:white;
+  color: white;
 }
 dialog::backdrop {
-  background-color: rgba(18, 18, 18, 0.5); 
+  background-color: rgba(18, 18, 18, 0.5);
 }
 .closeModal:hover {
   background-color: grey;
@@ -331,17 +348,17 @@ dialog::backdrop {
   border-right: rgb(155, 149, 149) 1px solid;
 }
 [id^="modal-"] header {
-  font-weight: bold;  
-  color:white;
-  padding-bottom: 2px;;
+  font-weight: bold;
+  color: white;
+  padding-bottom: 2px;
 }
 
 [id^="modal-"] header span {
   padding: 0px 5px;
   cursor: default;
-  position:absolute;
+  position: absolute;
   right: 0px;
-  }
+}
 
 [id^="modal-"] input {
   padding: 2px 3px;
@@ -362,7 +379,7 @@ dialog::backdrop {
 #modal-gameOver .info {
   padding: 10px;
   font-weight: bolder;
-  color:black;
+  color: black;
   line-height: 1.75em;
   background-color: white;
 }
