@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lista>
+     <escritor nome="Jose Saramago">
+          <nome_completo>José de Sousa Saramago</nome_completo>
+          <nacionalidade>português</nacionalidade>
+          <data_nascimento>16 de novembro</data_nascimento>
+          <fotografia>https://upload.wikimedia.org/wikipedia/commons/5/5c/JSJoseSaramago.jpg</fotografia>
+          <ocupacoes>
+               <ocupacao>serralheiro</ocupacao>
+               <ocupacao>mecânico</ocupacao>
+               <ocupacao>funcionário público</ocupacao>
+               <ocupacao>técnico editorial</ocupacao>
+               <ocupacao>escritor</ocupacao>
+               <ocupacao>tradutor</ocupacao>
+               <ocupacao>jornalista</ocupacao>
+               <ocupacao>poeta</ocupacao>
+               <ocupacao>cronista</ocupacao>
+               <ocupacao>dramaturgo</ocupacao>
+               <ocupacao>contista</ocupacao>
+               <ocupacao>romancista</ocupacao>
+               <ocupacao>teatrólogo</ocupacao>
+               <ocupacao>argumentista</ocupacao>
+               <ocupacao>ensaísta</ocupacao>
+          </ocupacoes>
+     </escritor>
+     <escritor nome="Fernando Pessoa">
+          <nome_completo>Fernando António Nogueira Pessoa</nome_completo>
+          <nacionalidade>Português</nacionalidade>
+          <data_nascimento>13 de junho de 1888</data_nascimento>
+          <fotografia>https://upload.wikimedia.org/wikipedia/commons/3/32/Pessoa_chapeu.jpg</fotografia>
+          <ocupacoes>
+               <ocupacao>Poeta</ocupacao>
+               <ocupacao>escritor</ocupacao>
+               <ocupacao>tradutor</ocupacao>
+          </ocupacoes>
+     </escritor>
+</lista>
