@@ -14,9 +14,9 @@ net.divideFcn = '';
 [net,tr] = train(net,p,t);
 view(net);
 
-y = (net);
+y = sim(net,p);
 
-y = y>=0.5;
+y = (y >= 0.5);
 accuracy = sum(y==t)/length(t);
 disp(['Accuracy = ' num2str(accuracy)]);
 plotperform(tr);
