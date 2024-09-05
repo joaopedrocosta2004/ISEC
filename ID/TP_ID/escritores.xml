@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE escritores SYSTEM "escritores.dtd">
+<escritores>
+     <autor nome="Fernando Pessoa" id="2103">
+          <Dados>
+               <nacionalidade>Português</nacionalidade>
+               <nascimento>13 junho 1888</nascimento>
+               <morte>30 novembro 1935</morte>
+               <foto>//upload.wikimedia.org/wikipedia/commons/thumb/3/32/Pessoa_chapeu.jpg/200px-Pessoa_chapeu.jpg</foto>
+               <genero>Modernismo</genero>
+               <ocupacao>Poeta</ocupacao>
+          </Dados>
+     </autor>
+     <autor nome="James Joyce" id="9854">
+          <Dados>
+               <nacionalidade>Irlandês</nacionalidade>
+               <nascimento>2 fevereiro 1882</nascimento>
+               <morte>13 janeiro 1941</morte>
+               <foto>//upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Revolutionary_Joyce_Better_Contrast.jpg/200px-Revolutionary_Joyce_Better_Contrast.jpg</foto>
+               <genero>Modernismo</genero>
+               <ocupacao />
+          </Dados>
+     </autor>
+</escritores>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<countries>
+     <countrie nome="Portugal">
+          <iso>PT</iso>
+          <continente>Europe</continente>
+          <presidente_republica>Marcelo Rebelo de Sousa</presidente_republica>
+          <imagem>https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1200px-Flag_of_Portugal.svg.png</imagem>
+     </countrie>
+     <countrie nome="Spain">
+          <iso>ES</iso>
+          <continente>Europe</continente>
+          <presidente_republica />
+          <imagem>https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/1200px-Bandera_de_Espa%C3%B1a.svg.png</imagem>
+     </countrie>
+</countries>

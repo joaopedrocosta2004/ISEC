@@ -1,0 +1,11 @@
+<!ELEMENT lista (escritor+)>
+<!ELEMENT escritor (nome_completo, nacionalidade, data_nascimento, fotografia, ocupacoes?)>
+<!ATTLIST escritor nome CDATA #REQUIRED>
+<!ELEMENT ocupacoes (ocupacao+)>
+<!ELEMENT data_nascimento (#PCDATA)>
+<!ELEMENT fotografia (#PCDATA)>
+<!ELEMENT ocupacao (#PCDATA)>
+<!ELEMENT nacionalidade (#PCDATA)>
+<!ELEMENT nome_completo (#PCDATA)>
+<!ATTLIST lista xmlns:xsi CDATA #IMPLIED>
+<!ATTLIST lista xsi:noNamespaceSchemaLocation CDATA #IMPLIED>

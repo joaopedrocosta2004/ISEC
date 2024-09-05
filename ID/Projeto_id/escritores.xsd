@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="lista">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="escritor"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="escritor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="nome_completo"/>
+        <xs:element ref="nacionalidade"/>
+        <xs:element ref="data_nascimento"/>
+        <xs:element ref="fotografia"/>
+        <xs:element ref="ocupacoes"/>
+      </xs:sequence>
+      <xs:attribute name="nome" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ocupacoes" type="xs:string"/>
+  <xs:element name="data_nascimento" type="xs:string"/>
+  <xs:element name="fotografia" type="xs:string"/>
+  <xs:element name="nacionalidade" type="xs:string"/>
+  <xs:element name="nome_completo" type="xs:string"/>
+</xs:schema>

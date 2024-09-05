@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<obras>
+     <obra isbn="9789897029233" id="9854">
+          <Dados>
+               <nomeautor>James Joyce</nomeautor>
+               <titulo>Retrato do Artista Quando Jovem</titulo>
+               <editora>Editora Guerra &amp; Paz</editora>
+               <preco>16,20€</preco>
+               <linkcapa>https://img.bertrand.pt/images/retrato-do-artista-quando-jovem-james-joyce/NDV8MjgxNTQxMDR8MjQ1NDU4ODl8MTY3NTc4NjMwNzAwMA==/131x198</linkcapa>
+          </Dados>
+     </obra>
+     <obra isbn="9789896152413" id="2103">
+          <Dados>
+               <nomeautor>Fernando Pessoa</nomeautor>
+               <titulo>Palavras do Livro do Desassossego | Words from The Book of Disquiet</titulo>
+               <editora>Edições Centro Atlântico</editora>
+               <preco>14,99€</preco>
+               <linkcapa>https://img.bertrand.pt/images/palavras-do-livro-do-desassossego-words-from-the-book-of-disquiet-fernando-pessoa/NDV8Mjg1OTcwNTl8MjQ5Nzc5NzR8MTY4NTM3ODQ5MzAwMA==/148x174</linkcapa>
+          </Dados>
+     </obra>
+</obras>

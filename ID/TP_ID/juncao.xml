@@ -1,0 +1,41 @@
+<?xml version="1.0" ?><Feito><escritores>
+     <autor nome="Fernando Pessoa" id="2103">
+          <Dados>
+               <nacionalidade>Português</nacionalidade>
+               <nascimento>13 junho 1888</nascimento>
+               <morte>30 novembro 1935</morte>
+               <foto>//upload.wikimedia.org/wikipedia/commons/thumb/3/32/Pessoa_chapeu.jpg/200px-Pessoa_chapeu.jpg</foto>
+               <genero>Modernismo</genero>
+               <ocupacao>Poeta</ocupacao>
+          </Dados>
+     </autor>
+     <autor nome="James Joyce" id="9854">
+          <Dados>
+               <nacionalidade>Irlandês</nacionalidade>
+               <nascimento>2 fevereiro 1882</nascimento>
+               <morte>13 janeiro 1941</morte>
+               <foto>//upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Revolutionary_Joyce_Better_Contrast.jpg/200px-Revolutionary_Joyce_Better_Contrast.jpg</foto>
+               <genero>Modernismo</genero>
+               <ocupacao></ocupacao>
+          </Dados>
+     </autor>
+</escritores><obras>
+     <obra isbn="9789897029233" id="9854">
+          <Dados>
+               <nomeautor>James Joyce</nomeautor>
+               <titulo>Retrato do Artista Quando Jovem</titulo>
+               <editora>Editora Guerra &amp; Paz</editora>
+               <preco>16,20€</preco>
+               <linkcapa>https://img.bertrand.pt/images/retrato-do-artista-quando-jovem-james-joyce/NDV8MjgxNTQxMDR8MjQ1NDU4ODl8MTY3NTc4NjMwNzAwMA==/131x198</linkcapa>
+          </Dados>
+     </obra>
+     <obra isbn="9789896152413" id="2103">
+          <Dados>
+               <nomeautor>Fernando Pessoa</nomeautor>
+               <titulo>Palavras do Livro do Desassossego | Words from The Book of Disquiet</titulo>
+               <editora>Edições Centro Atlântico</editora>
+               <preco>14,99€</preco>
+               <linkcapa>https://img.bertrand.pt/images/palavras-do-livro-do-desassossego-words-from-the-book-of-disquiet-fernando-pessoa/NDV8Mjg1OTcwNTl8MjQ5Nzc5NzR8MTY4NTM3ODQ5MzAwMA==/148x174</linkcapa>
+          </Dados>
+     </obra>
+</obras></Feito>

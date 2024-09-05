@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<top5PaisesPopulosos>
+  <facto nome="Portugal">
+    <iso>PT</iso>
+    <continente>Europe</continente>
+    <presidente_republica>Marcelo Rebelo de Sousa</presidente_republica>
+    <imagem>https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1200px-Flag_of_Portugal.svg.png</imagem>
+    <capital>ola</capital>
+    <moeda>USD</moeda>
+    <populacao>14</populacao>
+    <crescimento_populacao>0.15%</crescimento_populacao>
+    <area>12</area>
+    <idiomas_oficiais>
+      <idioma>Portugues</idioma>
+      <idioma>American</idioma>
+    </idiomas_oficiais>
+    <cidades_populosas>
+      <cidade>Lisboa</cidade>
+      <cidade>Porto</cidade>
+    </cidades_populosas>
+    <paises_vizinhos>
+      <pais_vizinho>Israel</pais_vizinho>
+    </paises_vizinhos>
+    <dominio_internet>.pt</dominio_internet>
+  </facto>
+  <facto nome="Espanha">
+    <iso>PT</iso>
+    <continente>Europe</continente>
+    <presidente_republica>Marcelo Rebelo de Sousa</presidente_republica>
+    <imagem>https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1200px-Flag_of_Portugal.svg.png</imagem>
+    <capital>ola</capital>
+    <moeda>USD</moeda>
+    <populacao>14</populacao>
+    <crescimento_populacao>0.15%</crescimento_populacao>
+    <area>12</area>
+    <idiomas_oficiais>
+      <idioma>Portugues</idioma>
+      <idioma>American</idioma>
+    </idiomas_oficiais>
+    <cidades_populosas>
+      <cidade>Lisboa</cidade>
+      <cidade>Porto</cidade>
+    </cidades_populosas>
+    <paises_vizinhos>
+      <pais_vizinho>Israel</pais_vizinho>
+    </paises_vizinhos>
+    <dominio_internet>.pt</dominio_internet>
+  </facto>
+</top5PaisesPopulosos>

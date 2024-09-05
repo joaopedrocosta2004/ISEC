@@ -1,0 +1,12 @@
+<!ELEMENT escritores (autor+)>
+<!ELEMENT autor (Dados)>
+<!ATTLIST autor
+    nome CDATA #REQUIRED
+    id ID #REQUIRED>
+<!ELEMENT Dados (nacionalidade, nascimento, morte, foto, genero, ocupacao)>
+<!ELEMENT nacionalidade (#PCDATA)>
+<!ELEMENT nascimento (#PCDATA)>
+<!ELEMENT morte (#PCDATA)>
+<!ELEMENT foto (#PCDATA)>
+<!ELEMENT genero (#PCDATA)>
+<!ELEMENT ocupacao (#PCDATA)>

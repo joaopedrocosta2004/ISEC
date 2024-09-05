@@ -19,14 +19,17 @@ import org.jdom2.Document;
 public class Projeto_id {
 
     public static void main(String[] args) throws IOException, SaxonApiException {
-        Scanner ler = new Scanner(System.in);
-        String pesquisa;
-        System.out.println("Palavra a procurar: ");
-        pesquisa = ler.nextLine();
-        Escritor e = criaEscritor(pesquisa);
-        e.imprime();
+        int res = validarXML.validarDocumentoDTD("escritores.xml", "escritores.dtd");
+        int res1 = validarXML.validarDocumentoXSD("escritores.xml", "escritores.xsd");
         
-        Document doc = XMLJDomFunctions.lerDocumentoXML("escritores.xml");
+        //Scanner ler = new Scanner(System.in);
+        //String pesquisa;
+        //System.out.println("Palavra a procurar: ");
+        //pesquisa = ler.nextLine();
+        //Escritor e = criaEscritor(pesquisa);
+        //e.imprime();
+        
+        //Document doc = XMLJDomFunctions.lerDocumentoXML("escritores.xml");
         //doc = ModeloXML.adicionaEscritor(e, doc);
         
         //doc = ModeloXML.removeEscritor("Pessoa", doc);
@@ -35,7 +38,8 @@ public class Projeto_id {
         
         //doc = ModeloXML.removeOcupacao("Jose Saramago", "serralheiro", doc);
         //if(doc!=null)
-        //    XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "escritor.xml");   
+        //    XMLJDomFunctions.escreverDocumentoParaFicheiro(doc, "escritor.xml");  
+        
         
     }
     
