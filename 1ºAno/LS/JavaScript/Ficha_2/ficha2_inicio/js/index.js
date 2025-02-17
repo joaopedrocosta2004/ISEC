@@ -6,7 +6,7 @@ const btLevel = document.getElementById("btLevel");
 const btPlay = document.getElementById("btPlay");
 const message = document.getElementById("message");
 // Encontra todas a classes list-item
-const itens = document.querySelectorAll(".list-item");
+const elementos = document.querySelectorAll(".list-item");
 
 function reset() {
   panelGame.style.display = "none";
@@ -21,8 +21,8 @@ function reset() {
   }
 
   // Quando termina o jogo retira a classe gameStarted
-  itens.forEach((item) => {
-    item.classList.remove("gameStarted");
+  elementos.forEach((elemento) => {
+    elemento.classList.remove("gameStarted");
   });
 }
 
@@ -33,8 +33,8 @@ function startGame() {
   btPlay.innerHTML = "Terminar Jogo";
 
   // Quando começa o jogo adiciona a classe gameStarted
-  itens.forEach((item) => {
-    item.classList.add("gameStarted");
+  elementos.forEach((elemento) => {
+    elemento.classList.add("gameStarted");
   });
 
   // Para que o elemento com o texto “Clique em Iniciar Jogo” não seja visível quando o jogo tiver iniciado
