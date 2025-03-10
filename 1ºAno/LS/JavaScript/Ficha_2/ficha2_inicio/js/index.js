@@ -5,9 +5,23 @@ const panelGame = document.getElementById("panel-game");
 const btLevel = document.getElementById("btLevel");
 const btPlay = document.getElementById("btPlay");
 const message = document.getElementById("message");
-// Encontra todas a classes list-item
 const elementos = document.querySelectorAll(".list-item");
-const cards = panelGame.querySelectorAll(".card");
+let cards = panelGame.querySelectorAll(".card");
+const messageGameOver = document.getElementById("messageGameOver");
+const nickname = document.getElementById("nickname");
+// Variaveis de pontuação
+let labelPoints = document.getElementById("points");
+let totalPoints;
+// Variaveis de verificação de jogo
+let totalFlippedCards;
+let flippedCards;
+// Variaveis de Tempo
+const TIMEOUTGAME_BASICO = 20;
+const TIMEOUTGAME_INTERMEDIO = 60;
+const TIMEOUTGAME_AVANCADO = 180;
+const labelGameTime = document.getElementById("gameTime");
+let timer;
+let timerId;
 
 const cardsLogos = [
   "angular",
@@ -47,6 +61,16 @@ function reset() {
   elementos.forEach((elemento) => {
     elemento.classList.remove("gameStarted");
   });
+
+  cards.forEach((card) => {
+    card.classList.remove("flipped");
+    card.classList.remove("inactive");
+    card.querySelector(".card-front").classList.remove("grayscale");
+  });
+
+  labelGameTime.removeAttribute("style");
+
+  createPanelGame();
 }
 
 function startGame() {
@@ -68,7 +92,7 @@ function startGame() {
   // console.table(cardsLogos);
 
   // Obter os primeiros 3 elementos do array inicial
-  const newCardLogos = cardsLogos.slice(0, 3);
+  const newCardLogos = cardsLogos.slice(0, cards.length/2);
   // Duplicar o array para criar os pares
   newCardLogos.push(...newCardLogos);
   // Embaralha o array
@@ -82,8 +106,17 @@ function startGame() {
     const img = card.querySelector(".card-front");
     img.src = `images/${newCardLogos[index]}.png`;
     // Adiciona o evento a todas as cartas do jogo
-    card.addEventListener("click", flipCard);
+    card.addEventListener("click", flipCard, { once: true });
   });
+
+  flippedCards = [];
+  totalFlippedCards = 0;
+  timer = getTime();
+  labelGameTime.textContent = `${timer}s`;
+  timerId = setInterval(updateGameTime, 1000);
+
+  totalPoints = 0;
+  labelPoints.textContent = totalPoints;
 }
 
 function stopGame() {
@@ -99,8 +132,12 @@ function stopGame() {
     card.removeEventListener("click", flipCard);
   });
 
-  hideCards();
-  reset();
+  // hideCards();
+  // reset();
+  clearInterval(timerId);
+  messageGameOver.textContent = `Pontuação: ${totalPoints}`;
+  nickname.style.display = "none";
+  modalGameOver.showModal();
 }
 
 function showCards() {
@@ -116,7 +153,133 @@ function hideCards() {
 }
 
 function flipCard() {
-  this.classList.toggle("flipped");
+  this.classList.add("flipped");
+  flippedCards.push(this);
+  // Quando há duas cartas viradas, verifica se são pares
+  if (flippedCards.length === 2) {
+    checkPair();
+  }
+}
+
+function checkPair() {
+  // Destrutura o array de duas cartas, em duas variaveis com cada carta
+  const [card1, card2] = flippedCards;
+  // Verifica de os cards-logos são iguais
+  if (card1.dataset.logo === card2.dataset.logo) {
+    // Se forem pares, mantém as cartas viradas
+    setTimeout(() => {
+      console.log("São Iguais!");
+      card1.classList.add("inactive");
+      card2.classList.add("inactive");
+      card1.querySelector(".card-front").classList.add("grayscale");
+      card2.querySelector(".card-front").classList.add("grayscale");
+      flippedCards = [];
+      totalFlippedCards = totalFlippedCards + 2;
+      updatePoints("+");
+      if (gameOver() == true) {
+        stopGame();
+      }
+    }, 200);
+  } else {
+    // Se não forem pares, volta as cartas para a posição inicial
+    setTimeout(() => {
+      console.log("Não são iguais!");
+      flippedCards = [];
+      card1.addEventListener("click", flipCard, { once: true });
+      card2.addEventListener("click", flipCard, { once: true });
+      card1.classList.remove("flipped");
+      card2.classList.remove("flipped");
+      updatePoints("-");
+    }, 200);
+  }
+}
+
+function gameOver() {
+  if (totalFlippedCards == cards.length) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function updateGameTime() {
+  timer = timer - 1;
+  if (timer < 10) {
+    labelGameTime.style.backgroundColor = "red";
+  }
+  labelGameTime.textContent = `${timer}s`;
+  if (timer == 0) {
+    stopGame();
+  }
+}
+
+function getTime() {
+  if (btLevel.value == 1) {
+    return TIMEOUTGAME_BASICO;
+  } else if (btLevel.value == 2) {
+    return TIMEOUTGAME_INTERMEDIO;
+  } else if (btLevel.value == 3) {
+    return TIMEOUTGAME_AVANCADO;
+  }
+}
+
+function updatePoints(operation) {
+  let nParesEmFalta = (cards.length-totalFlippedCards) / 2;
+  if (operation == '+') {
+    if (nParesEmFalta > 0){
+      totalPoints += timer * nParesEmFalta;
+    } else if (nParesEmFalta == 0) {
+      totalPoints += timer;
+    }
+    
+  } else if (operation == '-') {
+    if (totalPoints > 5) {
+      totalPoints -= 5;
+    } else {
+      totalPoints = 0;
+    }
+  }
+  labelPoints.textContent = `${totalPoints}`;
+}
+
+function createPanelGame() {
+
+  // Cria o painel do jogo
+  panelGame.innerHTML = "";
+  panelGame.className = "";
+
+  let nCards;
+  if (btLevel.value == 1) {
+    nCards = 6;
+  } else if (btLevel.value == 2) {
+    nCards = 12;
+    panelGame.classList.add("intermedio");
+  } else if (btLevel.value == 3) {
+    nCards = 20;
+    panelGame.classList.add("avancado");
+  }
+
+  let newDiv = document.createElement("div");
+  newDiv.className = "card";
+
+  let imgBack = document.createElement("img");
+  imgBack.setAttribute("src",'images/ls.png');
+  imgBack.className = "card-back";
+
+  let imgFront = document.createElement("img");
+  imgFront.className = "card-front";
+  
+  newDiv.appendChild(imgBack);
+  newDiv.appendChild(imgFront);
+  // panelGame.appendChild(newDiv);
+
+  for (let i = 0; i < nCards; i++) {
+    let cardClone = newDiv.cloneNode(true);
+    panelGame.appendChild(cardClone);
+  }
+
+  cards = panelGame.childNodes;
+
 }
 
 btLevel.addEventListener("change", function () {
