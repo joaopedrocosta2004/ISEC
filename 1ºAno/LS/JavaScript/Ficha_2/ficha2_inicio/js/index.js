@@ -22,7 +22,14 @@ const TIMEOUTGAME_AVANCADO = 180;
 const labelGameTime = document.getElementById("gameTime");
 let timer;
 let timerId;
+// Variaveis de topGamers
+let topGamers = [
+  { nickname: 'Ze', points: 331},
+  { nickname: 'Maria', points: 321}
+];
+const infoTop = document.getElementById("infoTop");
 
+// Array de cartas
 const cardsLogos = [
   "angular",
   "bootstrap",
@@ -35,6 +42,14 @@ const cardsLogos = [
   "backbone",
   "ember",
 ];
+
+function getLastPoints() {
+  if (topGamers.length > 0) {
+    return topGamers[topGamers.length - 1].points; 
+  } else {
+    return 0;
+  }
+}
 
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -117,6 +132,8 @@ function startGame() {
 
   totalPoints = 0;
   labelPoints.textContent = totalPoints;
+
+  getTopPoints();
 }
 
 function stopGame() {
@@ -138,6 +155,13 @@ function stopGame() {
   messageGameOver.textContent = `Pontuação: ${totalPoints}`;
   nickname.style.display = "none";
   modalGameOver.showModal();
+  // Verifica se o player tem uma pontuaçao melhor que os 10 primeiros
+  if (checkTop10()){
+    nickname.style.display = "block"
+    messageGameOver.innerHTML += "<br>Parabéns! Entrou no TOP 10!"
+  } else {
+    nickname.style.display = "none"
+  }
 }
 
 function showCards() {
@@ -282,6 +306,86 @@ function createPanelGame() {
 
 }
 
+function getTop10() {
+  // let gamers = "";
+  //   gamers +="<p>" + topGamer.nickname + ' - ' + topGamer.points + "<p/>";
+  // infoTop.innerHTML = gamers;
+  infoTop.textContent = "";
+  // Cria o html base para o cabeçalho
+  let newDiv = document.createElement("div");
+  let p1 = document.createElement("p");
+  let p2 = document.createElement("p");
+  p1.textContent = "Nickname";
+  p2.textContent = "Pontuação";
+  newDiv.appendChild(p1);
+  newDiv.appendChild(p2);
+  infoTop.appendChild(newDiv);
+
+  topGamers.forEach(topGamer => {
+    let newDivPlayer = newDiv.cloneNode(true);
+    newDivPlayer.firstChild.textContent = topGamer.nickname;
+    newDivPlayer.lastChild.textContent = topGamer.points;
+    infoTop.appendChild(newDivPlayer);
+  }); 
+  console.log("ola4");
+}
+
+function getTopPoints() {
+  const pointsTop = document.getElementById("pointsTop");
+  if (topGamers.length > 0){
+    pointsTop.textContent = topGamers[0].points
+  } else {
+    pointsTop.textContent = 0;
+  }
+}
+
+function checkTop10() {
+  if (topGamers.length < 10){
+    return true;
+  } else if (getLastPoints() < totalPoints){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function saveTop10() {
+  let name = document.querySelector('#inputNick').value;
+  let exists = false;
+  // Verifica se o jogador existe
+  topGamers.forEach(topGamer => {
+    console.log("topgamers: ", topGamer)
+    if (topGamer.name === name) {
+      exists = true;
+      console.log("exists true")
+      if (totalPoints > topGamer.points) {
+        topGamer.points = totalPoints;
+      }
+    }
+  });
+  // Caso o jogador nao exista no array, adiciona
+  if (!exists) {
+    topGamers.push({ nickname: name, points: totalPoints });
+    console.log("exists false")
+    console.log(topGamers)
+  }
+  topGamers.sort(function (a, b) { return b.points - a.points }); 
+    
+  if (topGamers.length > 10) {
+    // Remove o jogador com a menor pontuação
+    topGamers.pop();
+    console.log("topGamers after pop: ", topGamers)  
+  }
+
+  localStorage.setItem("nickname", name);
+  localStorage.setItem("topGamers", JSON.stringify(topGamers));
+}
+
+function getLocalStorage() {
+  let nickname = localStorage.getItem("nickname");
+  let topGamers = JSON.parse(localStorage.getItem("topGamers")) || [];
+}
+
 btLevel.addEventListener("change", function () {
   reset();
 });
@@ -298,4 +402,13 @@ panelGame.addEventListener("click", function () {
   message.classList.toggle("hide");
 });
 
+btTop.addEventListener("click", getTop10);
+
+okTop.addEventListener("click", () => {
+  saveTop10();
+  modalGameOver.close();
+  reset();
+});
+
 reset();
+getLocalStorage();
